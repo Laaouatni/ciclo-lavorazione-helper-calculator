@@ -1,7 +1,7 @@
 <script lang="ts">
   import RowItemInput from './input/RowItemInput.svelte';
 
-  import type { TypeParametriLavorazioneValue } from "./../types/types.ts";
+  import type { TypeParametriLavorazioneValue } from "../utils/types/types";
 
   export let thisParametro: TypeParametriLavorazioneValue;
 </script>

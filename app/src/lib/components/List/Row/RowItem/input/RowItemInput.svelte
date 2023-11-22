@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { TypeParametriLavorazioneValue } from "../../types/types.js";
+  import type { TypeParametriLavorazioneValue } from "../../utils/types/types.js";
   export let thisParametro: TypeParametriLavorazioneValue;
   export let options = {
     minmax: {
