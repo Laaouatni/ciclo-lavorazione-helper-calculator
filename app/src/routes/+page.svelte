@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+  import EditView from "$lib/components/EditView/EditView.svelte";
+  import List from "$lib/components/List/List.svelte";
+</script>
+
+<main class="flex flex-col h-full border gap-3">
+  <List></List>
+  <EditView></EditView>
+</main>
