@@ -1,14 +1,27 @@
 import type TypeParametriLavorazione from "../types/types";
 
 const defaultParametriLavorazione: TypeParametriLavorazione = {
+  d: {
+    value: 0,
+    info: "diametro pezzo",
+    unit: "Ø",
+    minmax: {
+      min: 1,
+      max: 100,
+    },
+  },
   vt: {
     value: 0,
     info: "velocità di taglio",
     unit: "m/min",
     minmax: {
       min: 0,
-      max: 1000
-    }
+      max: 1000,
+    },
+    get formula() {
+      const thisParent = defaultParametriLavorazione;
+      return (thisParent.d.value * Math.PI * thisParent.n.value) / 1000;
+    },
   },
   n: {
     value: 0,
@@ -16,8 +29,12 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     unit: "g/min",
     minmax: {
       min: 0,
-      max: 5000
-    }
+      max: 5000,
+    },
+    get formula() {
+      const thisParent = defaultParametriLavorazione;
+      return (thisParent.vt.value * 1000) / (Math.PI * thisParent.d.value);
+    },
   },
   prof: {
     value: 0,
@@ -25,9 +42,9 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     unit: "mm",
     minmax: {
       min: 0,
-      max: 10
+      max: 5,
     },
-    step: 0.1
+    step: 0.1,
   },
   avanz: {
     value: 0,
@@ -35,9 +52,9 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     unit: "mm/giro",
     minmax: {
       min: 0,
-      max: 2
+      max: 2,
     },
-    step: 0.1
+    step: 0.1,
   },
   corsa: {
     value: 0,
@@ -45,8 +62,8 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     unit: "mm",
     minmax: {
       min: 0,
-      max: 500
-    }
+      max: 500,
+    },
   },
   npassate: {
     value: 0,
@@ -54,9 +71,25 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     unit: "passate",
     minmax: {
       min: 0,
-      max: 100
-    }
+      max: 50,
+    },
   },
+  tempo: {
+    value: 0,
+    info: "tempo",
+    unit: "min",
+    minmax: {
+      min: 0,
+      max: 10,
+    },
+    step: 0.01,
+    get formula() {
+      const thisParent = defaultParametriLavorazione;
+      return (
+        thisParent.corsa.value / (thisParent.avanz.value * thisParent.n.value)
+      );
+    },
+  }
 };
 
 export default defaultParametriLavorazione;

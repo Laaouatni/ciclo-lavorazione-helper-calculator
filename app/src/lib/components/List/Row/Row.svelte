@@ -16,7 +16,7 @@
   };
 </script>
 
-<div class="grid md:grid-cols-2 2xl:grid-cols-3 gap-2 ">
+<div class="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2 ">
   {#each parametriLavorazioneArray as thisParametro}
     <RowItem bind:thisParametro={thisParametro[1]}></RowItem>
   {/each}

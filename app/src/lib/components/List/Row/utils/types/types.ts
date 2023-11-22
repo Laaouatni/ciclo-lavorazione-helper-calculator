@@ -1,10 +1,12 @@
 export type TypeParametriLavorazioneIndexNames =
+  | "d"
   | "vt"
   | "n"
   | "prof"
   | "avanz"
   | "corsa"
-  | "npassate";
+  | "npassate"
+  | "tempo";
 
 export type TypeParametriLavorazioneValue = {
   value: number;
@@ -15,6 +17,7 @@ export type TypeParametriLavorazioneValue = {
     max: number
   }
   step?: number;
+  formula?:any
 };
 
 type TypeParametriLavorazione = {
