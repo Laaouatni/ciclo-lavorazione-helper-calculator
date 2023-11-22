@@ -10,6 +10,11 @@ export type TypeParametriLavorazioneValue = {
   value: number;
   info: string;
   unit: string;
+  minmax: {
+    min: number,
+    max: number
+  }
+  step?: number;
 };
 
 type TypeParametriLavorazione = {
