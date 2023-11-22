@@ -1,4 +1,5 @@
 import type TypeParametriLavorazione from "../types/types";
+import type { TypeParametriLavorazioneIndexNames } from "../types/types";
 
 const defaultParametriLavorazione: TypeParametriLavorazione = {
   d: {
@@ -20,7 +21,10 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     },
     get formula() {
       const thisParent = defaultParametriLavorazione;
-      return (thisParent.d.value * Math.PI * thisParent.n.value) / 1000;
+      return {
+        value: (thisParent.d.value * Math.PI * thisParent.n.value) / 1000,
+        variablesToCheck: ["d", "n"] as TypeParametriLavorazioneIndexNames[],
+      };
     },
   },
   n: {
@@ -33,7 +37,10 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     },
     get formula() {
       const thisParent = defaultParametriLavorazione;
-      return (thisParent.vt.value * 1000) / (Math.PI * thisParent.d.value);
+      return {
+        value: (thisParent.vt.value * 1000) / (Math.PI * thisParent.d.value),
+        variablesToCheck: ["vt", "d"] as TypeParametriLavorazioneIndexNames[],
+      };
     },
   },
   prof: {
@@ -85,11 +92,14 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     step: 0.01,
     get formula() {
       const thisParent = defaultParametriLavorazione;
-      return (
-        thisParent.corsa.value / (thisParent.avanz.value * thisParent.n.value)
-      );
+      return {
+        value:
+          thisParent.corsa.value /
+          (thisParent.avanz.value * thisParent.n.value),
+        variablesToCheck: ["corsa", "avanz", "n"] as TypeParametriLavorazioneIndexNames[],
+      };
     },
-  }
+  },
 };
 
 export default defaultParametriLavorazione;

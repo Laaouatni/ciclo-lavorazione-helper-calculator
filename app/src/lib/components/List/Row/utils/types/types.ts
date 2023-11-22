@@ -17,7 +17,10 @@ export type TypeParametriLavorazioneValue = {
     max: number
   }
   step?: number;
-  formula?:any
+  formula?: {
+    value: number,
+    variablesToCheck: TypeParametriLavorazioneIndexNames[]
+  }
 };
 
 type TypeParametriLavorazione = {

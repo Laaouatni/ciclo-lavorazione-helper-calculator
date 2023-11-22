@@ -2,6 +2,12 @@
   import type { TypeParametriLavorazioneValue } from "../../utils/types/types.js";
   export let thisParametro: TypeParametriLavorazioneValue;
 
+  // $: if (
+  //   thisParametro.formula && thisParametro.formula.variablesToCheck.some((x) => x)
+  // ) {
+  //   thisParametro.value = thisParametro.formula.value;
+  // }
+
   let bindedRangeInput: number = thisParametro.value;
   let bindedNumberInput: number = thisParametro.value;
 
@@ -16,7 +22,9 @@
     min={thisParametro.minmax.min}
     max={thisParametro.minmax.max}
     step={thisParametro.step || 1}
-    on:input={() => {bindedNumberInput = bindedRangeInput;}}
+    on:input={() => {
+      bindedNumberInput = bindedRangeInput;
+    }}
   />
   <input
     type="number"
@@ -24,6 +32,8 @@
     bind:value={bindedNumberInput}
     min={thisParametro.minmax.min}
     max={thisParametro.minmax.max}
-    on:input={() => {bindedRangeInput = bindedNumberInput}}
+    on:input={() => {
+      bindedRangeInput = bindedNumberInput;
+    }}
   />
 </div>
