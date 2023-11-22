@@ -1,1 +1,7 @@
-<div class="p-3 border flex-1">list</div>
+<script>
+  import Row from "./Row/Row.svelte";
+</script>
+
+<div class="p-3 flex-1">
+  <Row></Row>
+</div>

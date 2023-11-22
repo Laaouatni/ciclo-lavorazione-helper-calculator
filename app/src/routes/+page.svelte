@@ -3,7 +3,7 @@
   import List from "$lib/components/List/List.svelte";
 </script>
 
-<main class="flex flex-col h-full border gap-3">
+<main class="flex flex-col h-full">
   <List></List>
   <EditView></EditView>
 </main>
