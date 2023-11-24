@@ -25,6 +25,7 @@
     min={$parametriLavorazioneStore[keyId].minmax.min}
     max={$parametriLavorazioneStore[keyId].minmax.max}
     step={$parametriLavorazioneStore[keyId].step || 1}
+    disabled={$parametriLavorazioneStore[keyId].disabled || false}
     on:input={() => {
       changeValuesOnOtherInputs();
     }}

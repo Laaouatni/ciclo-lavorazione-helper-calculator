@@ -17,6 +17,7 @@ export type TypeParametriLavorazioneValue = {
     max: number
   }
   step?: number;
+  disabled?: boolean;
   formula?: {
     value: number,
     variablesToCheck: TypeParametriLavorazioneIndexNames[]

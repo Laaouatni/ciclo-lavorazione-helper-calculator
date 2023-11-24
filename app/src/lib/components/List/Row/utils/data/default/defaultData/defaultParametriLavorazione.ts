@@ -103,6 +103,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       max: 10,
     },
     step: 0.001,
+    disabled: true,
     get formula() {
       const thisParent = defaultParametriLavorazione;
       return {
