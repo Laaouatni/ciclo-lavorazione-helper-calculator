@@ -17,7 +17,7 @@
   }
 </script>
 
-<div class="flex dark:bg-neutral-800">
+<div class="flex dark:bg-neutral-800 accent-neutral-500">
   <input
     class="flex-1 mx-3"
     type="range"
