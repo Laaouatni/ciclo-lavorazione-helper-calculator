@@ -1,37 +1,42 @@
 <script lang="ts">
-  import { parametriLavorazioneStore } from "../../utils/data/store/store.js";
-  import type { TypeParametriLavorazioneIndexNames } from "../../utils/types/types.js";
+  import { parametriLavorazioneStore } from "../../utils/data/store/store";
+  import type { TypeParametriLavorazioneIndexNames } from "../../utils/types/types";
+  import relations from "../../utils/data/default/formulaRelations/formulaRelations";
 
   export let keyId: TypeParametriLavorazioneIndexNames;
 
-  let { minmax, step, value } = $parametriLavorazioneStore[keyId];
-
-  let bindedRangeInput: number = value;
-  let bindedNumberInput: number = value;
-
-  $: value = bindedNumberInput;
+  function changeValuesOnOtherInputs() {
+    if(relations()[keyId]) {
+      const parametersToChange = relations()[keyId];
+  
+      parametersToChange?.forEach((parameterToChangeKey) => {
+        $parametriLavorazioneStore[parameterToChangeKey].value =
+          $parametriLavorazioneStore[parameterToChangeKey].formula?.value ?? 0;
+      });
+    }
+  }
 </script>
 
 <div class="flex dark:bg-neutral-800">
   <input
     class="flex-1 mx-3"
     type="range"
-    bind:value={bindedRangeInput}
-    min={minmax.min}
-    max={minmax.max}
-    step={step || 1}
+    bind:value={$parametriLavorazioneStore[keyId].value}
+    min={$parametriLavorazioneStore[keyId].minmax.min}
+    max={$parametriLavorazioneStore[keyId].minmax.max}
+    step={$parametriLavorazioneStore[keyId].step || 1}
     on:input={() => {
-      bindedNumberInput = bindedRangeInput;
+      changeValuesOnOtherInputs();
     }}
   />
   <input
     type="number"
-    class="dark:bg-neutral-800 bg-neutral-200 p-2 w-20 border-l-4 dark:border-l-neutral-700 border-l-neutral-300"
-    bind:value={bindedNumberInput}
-    min={minmax.min}
-    max={minmax.max}
+    class="dark:bg-neutral-800 bg-neutral-200 p-2 w-24 border-l-4 dark:border-l-neutral-700 border-l-neutral-300"
+    bind:value={$parametriLavorazioneStore[keyId].value}
+    min={$parametriLavorazioneStore[keyId].minmax.min}
+    max={$parametriLavorazioneStore[keyId].minmax.max}
     on:input={() => {
-      bindedRangeInput = bindedNumberInput;
+      changeValuesOnOtherInputs();
     }}
   />
 </div>

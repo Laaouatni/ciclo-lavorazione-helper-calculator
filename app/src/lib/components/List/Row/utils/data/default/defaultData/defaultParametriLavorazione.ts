@@ -1,24 +1,26 @@
-import type TypeParametriLavorazione from "../../types/types";
-import type { TypeParametriLavorazioneIndexNames } from "../../types/types";
+import type TypeParametriLavorazione from "../../../types/types";
+import type { TypeParametriLavorazioneIndexNames } from "../../../types/types";
 
 const defaultParametriLavorazione: TypeParametriLavorazione = {
   d: {
-    value: 0,
+    value: 30,
     info: "diametro pezzo",
     unit: "Ø",
     minmax: {
       min: 1,
       max: 100,
     },
+    step: 0.05
   },
   vt: {
-    value: 0,
+    value: 75,
     info: "velocità di taglio",
     unit: "m/min",
     minmax: {
       min: 0,
       max: 1000,
     },
+    step: 0.001,
     get formula() {
       const thisParent = defaultParametriLavorazione;
       return {
@@ -28,7 +30,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     },
   },
   n: {
-    value: 0,
+    value: 800,
     info: "numero giri al minuto",
     unit: "g/min",
     minmax: {
@@ -44,7 +46,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     },
   },
   prof: {
-    value: 0,
+    value: 0.5,
     info: "profondità di taglio",
     unit: "mm",
     minmax: {
@@ -54,7 +56,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     step: 0.1,
   },
   avanz: {
-    value: 0,
+    value: 0.2,
     info: "avanzamento per ogni giro",
     unit: "mm/giro",
     minmax: {
@@ -64,16 +66,17 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     step: 0.1,
   },
   corsa: {
-    value: 0,
+    value: 50,
     info: "corsa",
     unit: "mm",
     minmax: {
       min: 0,
-      max: 500,
+      max: 200,
     },
+    step: 0.1
   },
   npassate: {
-    value: 0,
+    value: 2,
     info: "numero di passate",
     unit: "passate",
     minmax: {
@@ -82,14 +85,14 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     },
   },
   tempo: {
-    value: 0,
+    value: 0.3,
     info: "tempo",
     unit: "min",
     minmax: {
       min: 0,
       max: 10,
     },
-    step: 0.01,
+    step: 0.001,
     get formula() {
       const thisParent = defaultParametriLavorazione;
       return {
