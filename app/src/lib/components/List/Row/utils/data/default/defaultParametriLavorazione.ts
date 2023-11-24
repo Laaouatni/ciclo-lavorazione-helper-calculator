@@ -1,5 +1,5 @@
-import type TypeParametriLavorazione from "../types/types";
-import type { TypeParametriLavorazioneIndexNames } from "../types/types";
+import type TypeParametriLavorazione from "../../types/types";
+import type { TypeParametriLavorazioneIndexNames } from "../../types/types";
 
 const defaultParametriLavorazione: TypeParametriLavorazione = {
   d: {
@@ -96,7 +96,11 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
         value:
           thisParent.corsa.value /
           (thisParent.avanz.value * thisParent.n.value),
-        variablesToCheck: ["corsa", "avanz", "n"] as TypeParametriLavorazioneIndexNames[],
+        variablesToCheck: [
+          "corsa",
+          "avanz",
+          "n",
+        ] as TypeParametriLavorazioneIndexNames[],
       };
     },
   },

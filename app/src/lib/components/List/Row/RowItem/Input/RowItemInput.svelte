@@ -1,17 +1,15 @@
 <script lang="ts">
-  import type { TypeParametriLavorazioneValue } from "../../utils/types/types.js";
-  export let thisParametro: TypeParametriLavorazioneValue;
+  import { parametriLavorazioneStore } from "../../utils/data/store/store.js";
+  import type { TypeParametriLavorazioneIndexNames } from "../../utils/types/types.js";
 
-  // $: if (
-  //   thisParametro.formula && thisParametro.formula.variablesToCheck.some((x) => x)
-  // ) {
-  //   thisParametro.value = thisParametro.formula.value;
-  // }
+  export let keyId: TypeParametriLavorazioneIndexNames;
 
-  let bindedRangeInput: number = thisParametro.value;
-  let bindedNumberInput: number = thisParametro.value;
+  let { minmax, step, value } = $parametriLavorazioneStore[keyId];
 
-  $: thisParametro.value = bindedNumberInput;
+  let bindedRangeInput: number = value;
+  let bindedNumberInput: number = value;
+
+  $: value = bindedNumberInput;
 </script>
 
 <div class="flex dark:bg-neutral-800">
@@ -19,9 +17,9 @@
     class="flex-1 mx-3"
     type="range"
     bind:value={bindedRangeInput}
-    min={thisParametro.minmax.min}
-    max={thisParametro.minmax.max}
-    step={thisParametro.step || 1}
+    min={minmax.min}
+    max={minmax.max}
+    step={step || 1}
     on:input={() => {
       bindedNumberInput = bindedRangeInput;
     }}
@@ -30,8 +28,8 @@
     type="number"
     class="dark:bg-neutral-800 bg-neutral-200 p-2 w-20 border-l-4 dark:border-l-neutral-700 border-l-neutral-300"
     bind:value={bindedNumberInput}
-    min={thisParametro.minmax.min}
-    max={thisParametro.minmax.max}
+    min={minmax.min}
+    max={minmax.max}
     on:input={() => {
       bindedRangeInput = bindedNumberInput;
     }}

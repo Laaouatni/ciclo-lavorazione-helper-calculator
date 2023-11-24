@@ -1,9 +1,14 @@
 <script lang="ts">
-  import type { TypeParametriLavorazioneValue } from "../../utils/types/types.ts";
-  export let thisParametro: TypeParametriLavorazioneValue;
+  import { parametriLavorazioneStore } from "../../utils/data/store/store";
+  import type { TypeParametriLavorazioneIndexNames } from "../../utils/types/types";
+  export let keyId: TypeParametriLavorazioneIndexNames;
+
+  let { info, unit } = $parametriLavorazioneStore[keyId];
 </script>
 
-<div class="dark:bg-neutral-900 bg-neutral-100 p-2 flex justify-between items-center">
-  <div>{thisParametro.info}</div>
-  <div class="opacity-80 text-sm">{thisParametro.unit}</div>
+<div
+  class="dark:bg-neutral-900 bg-neutral-100 p-2 flex justify-between items-center"
+>
+  <div>{info}</div>
+  <div class="opacity-80 text-sm">{unit}</div>
 </div>
