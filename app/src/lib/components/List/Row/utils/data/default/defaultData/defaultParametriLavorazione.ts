@@ -1,6 +1,12 @@
 import type TypeParametriLavorazione from "../../../types/types";
 import type { TypeParametriLavorazioneIndexNames } from "../../../types/types";
 
+function fixMathRoundError(number: number, precision: number = 3): number {
+  return Number(
+    (Math.round(number * 10 ** precision) / 10 ** precision).toFixed(precision),
+  );
+}
+
 const defaultParametriLavorazione: TypeParametriLavorazione = {
   d: {
     value: 30,
@@ -10,7 +16,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       min: 1,
       max: 100,
     },
-    step: 0.05
+    step: 0.05,
   },
   vt: {
     value: 75,
@@ -24,7 +30,9 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     get formula() {
       const thisParent = defaultParametriLavorazione;
       return {
-        value: (thisParent.d.value * Math.PI * thisParent.n.value) / 1000,
+        value: fixMathRoundError(
+          (thisParent.d.value * Math.PI * thisParent.n.value) / 1000,
+        ),
         variablesToCheck: ["d", "n"] as TypeParametriLavorazioneIndexNames[],
       };
     },
@@ -40,7 +48,9 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     get formula() {
       const thisParent = defaultParametriLavorazione;
       return {
-        value: (thisParent.vt.value * 1000) / (Math.PI * thisParent.d.value),
+        value: fixMathRoundError(
+          (thisParent.vt.value * 1000) / (Math.PI * thisParent.d.value),
+        ),
         variablesToCheck: ["vt", "d"] as TypeParametriLavorazioneIndexNames[],
       };
     },
@@ -73,7 +83,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       min: 0,
       max: 200,
     },
-    step: 0.1
+    step: 0.1,
   },
   npassate: {
     value: 2,
@@ -96,13 +106,15 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     get formula() {
       const thisParent = defaultParametriLavorazione;
       return {
-        value:
-          thisParent.corsa.value /
-          (thisParent.avanz.value * thisParent.n.value),
+        value: fixMathRoundError(
+          (thisParent.corsa.value /
+            (thisParent.avanz.value * thisParent.n.value)) * thisParent.npassate.value,
+        ),
         variablesToCheck: [
           "corsa",
           "avanz",
           "n",
+          "npassate"
         ] as TypeParametriLavorazioneIndexNames[],
       };
     },
