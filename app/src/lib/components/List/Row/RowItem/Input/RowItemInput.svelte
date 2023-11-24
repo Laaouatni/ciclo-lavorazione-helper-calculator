@@ -5,9 +5,9 @@
 
   export let keyId: TypeParametriLavorazioneIndexNames;
 
-  $: if(!$parametriLavorazioneStore[keyId].value) {
-    $parametriLavorazioneStore[keyId].value = 0.0001;
-  }
+  // $: if(!$parametriLavorazioneStore[keyId].value) {
+  //   $parametriLavorazioneStore[keyId].value = 0.0001;
+  // }
 
   function changeValuesOnOtherInputs() {
     if(relations()[keyId]) {
