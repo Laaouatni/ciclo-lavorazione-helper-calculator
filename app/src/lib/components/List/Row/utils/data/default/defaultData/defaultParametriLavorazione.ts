@@ -23,7 +23,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "velocità di taglio",
     unit: "m/min",
     minmax: {
-      min: 0,
+      min: 1,
       max: 1000,
     },
     step: 0.001,
@@ -42,7 +42,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "numero giri al minuto",
     unit: "g/min",
     minmax: {
-      min: 0,
+      min: 1,
       max: 5000,
     },
     get formula() {

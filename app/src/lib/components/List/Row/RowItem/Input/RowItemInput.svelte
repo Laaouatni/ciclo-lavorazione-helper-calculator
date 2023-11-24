@@ -5,6 +5,10 @@
 
   export let keyId: TypeParametriLavorazioneIndexNames;
 
+  $: if(!$parametriLavorazioneStore[keyId].value) {
+    $parametriLavorazioneStore[keyId].value = 0.0001;
+  }
+
   function changeValuesOnOtherInputs() {
     if(relations()[keyId]) {
       const parametersToChange = relations()[keyId];
@@ -26,7 +30,7 @@
     max={$parametriLavorazioneStore[keyId].minmax.max}
     step={$parametriLavorazioneStore[keyId].step || 1}
     disabled={$parametriLavorazioneStore[keyId].disabled || false}
-    on:input={() => {
+    on:input={(e) => {
       changeValuesOnOtherInputs();
     }}
   />
