@@ -3,7 +3,6 @@
   import List from "$lib/components/List/List.svelte";
 </script>
 
-<main class="flex flex-col h-full">
+<main class="grid h-full place-items-center">
   <List></List>
-  <!-- <EditView></EditView> -->
 </main>

@@ -9,6 +9,6 @@
 <div
   class="dark:bg-neutral-900 bg-neutral-100 p-2 flex justify-between items-center"
 >
-  <div>{info}</div>
+  <div class="">{info}</div>
   <div class="opacity-80 text-sm">{unit}</div>
 </div>

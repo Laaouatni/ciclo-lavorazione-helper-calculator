@@ -6,7 +6,7 @@
   let parametriLavorazioneArray = Object.keys($parametriLavorazioneStore) as TypeParametriLavorazioneIndexNames[];
 </script>
 
-<div class="grid lg:grid-cols-2 2xl:grid-cols-3 gap-2">
+<div class="grid 2xl:grid-cols-2 gap-2">
   {#each parametriLavorazioneArray as thisKey}
     <RowItem keyId={thisKey}></RowItem>
   {/each}

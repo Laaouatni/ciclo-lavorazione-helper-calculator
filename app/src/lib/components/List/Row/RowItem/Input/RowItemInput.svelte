@@ -31,7 +31,7 @@
   />
   <input
     type="number"
-    class="dark:bg-neutral-800 bg-neutral-200 p-2 w-24 border-l-4 dark:border-l-neutral-700 border-l-neutral-300"
+    class="dark:bg-neutral-800 bg-neutral-200 p-2 w-28 border-l-4 dark:border-l-neutral-700 border-l-neutral-300"
     bind:value={$parametriLavorazioneStore[keyId].value}
     min={$parametriLavorazioneStore[keyId].minmax.min}
     max={$parametriLavorazioneStore[keyId].minmax.max}
