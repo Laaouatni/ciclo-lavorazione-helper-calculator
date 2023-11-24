@@ -5,9 +5,9 @@
 
   export let keyId: TypeParametriLavorazioneIndexNames;
 
-  // $: if(!$parametriLavorazioneStore[keyId].value) {
-  //   $parametriLavorazioneStore[keyId].value = 0.0001;
-  // }
+  $: if(!$parametriLavorazioneStore[keyId].value) {
+    $parametriLavorazioneStore[keyId].value = $parametriLavorazioneStore[keyId].minmax.min;
+  }
 
   function changeValuesOnOtherInputs() {
     if(relations()[keyId]) {
@@ -40,6 +40,7 @@
     bind:value={$parametriLavorazioneStore[keyId].value}
     min={$parametriLavorazioneStore[keyId].minmax.min}
     max={$parametriLavorazioneStore[keyId].minmax.max}
+    step={$parametriLavorazioneStore[keyId].step || 1}
     on:input={() => {
       changeValuesOnOtherInputs();
     }}
