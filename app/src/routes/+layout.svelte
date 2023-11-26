@@ -1,15 +1,9 @@
 <script>
   import "../app.pcss";
-
-  /* @ts-ignore */
-  import { pwaInfo } from "virtual:pwa-info";
-
-  $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : "";
 </script>
 
 <svelte:head>
-  <meta name="theme-color" content="blue">
-  {@html webManifestLink}
+  <meta name="theme-color" content="#171717">
 </svelte:head>
 
 <div
