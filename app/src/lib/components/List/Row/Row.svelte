@@ -11,7 +11,7 @@
   ) as [TypeParametriLavorazioneIndexNames, TypeParametriLavorazioneValue][];
 </script>
 
-<div class="grid 2xl:grid-cols-2 gap-5">
+<div class="grid gap-5">
   {#each parametriLavorazioneArray as [thisKey, thisValue]}
     {#if !thisValue.hidden}
       <RowItem keyId={thisKey}></RowItem>

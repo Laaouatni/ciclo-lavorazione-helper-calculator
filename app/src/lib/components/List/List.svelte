@@ -2,6 +2,6 @@
   import Row from "./Row/Row.svelte";
 </script>
 
-<div class="p-2 w-full">
+<div class="p-3 w-full">
   <Row></Row>
 </div>
