@@ -1,9 +1,11 @@
 <script>
   import "../app.pcss";
+  import manifestRaw from "../../static/manifest.json?raw";
 </script>
 
 <svelte:head>
-  <meta name="theme-color" content="#171717">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content={JSON.parse(manifestRaw).theme_color}/>
 </svelte:head>
 
 <div

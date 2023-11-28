@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { parametriLavorazioneStore } from "../../../utils/data/store/store";
+  import { parametriLavorazioneStore } from "$data/stores/parametriLavorazioneStore";
 
-  function convertDecimalTimeToReal(decimal) {
+  function convertDecimalTimeToReal(decimal: number) {
     const minutes = Math.floor(decimal) % 60;
     const hours = Math.floor(decimal / 60);
     const seconds = Math.round((decimal - Math.floor(decimal)) * 60);

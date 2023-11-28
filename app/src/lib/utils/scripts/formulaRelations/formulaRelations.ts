@@ -1,5 +1,5 @@
-import defaultParametriLavorazione from "../defaultData/defaultParametriLavorazione";
-import type { TypeParametriLavorazioneIndexNames } from "../../../types/types";
+import defaultParametriLavorazione from "$data/default/defaultParametriLavorazione";
+import type { TypeParametriLavorazioneIndexNames } from "$types/types";
 
 type TypeRelations = {
   [index in TypeParametriLavorazioneIndexNames]?: TypeParametriLavorazioneIndexNames[];

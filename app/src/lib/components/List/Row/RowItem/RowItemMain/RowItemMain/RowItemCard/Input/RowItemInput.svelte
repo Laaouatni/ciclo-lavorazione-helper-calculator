@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { parametriLavorazioneStore } from "../../utils/data/store/store";
-  import type { TypeParametriLavorazioneIndexNames } from "../../utils/types/types";
-  import relations from "../../utils/data/default/formulaRelations/formulaRelations";
+  import { parametriLavorazioneStore } from "$data/stores/parametriLavorazioneStore";
+  import type { TypeParametriLavorazioneIndexNames } from "$types/types";
+  import formulaRelations from "$scripts/formulaRelations/formulaRelations";
 
   export let keyId: TypeParametriLavorazioneIndexNames;
 
@@ -10,8 +10,8 @@
   }
 
   function changeValuesOnOtherInputs() {
-    if(relations()[keyId]) {
-      const parametersToChange = relations()[keyId];
+    if(formulaRelations()[keyId]) {
+      const parametersToChange = formulaRelations()[keyId];
   
       parametersToChange?.forEach((parameterToChangeKey) => {
         $parametriLavorazioneStore[parameterToChangeKey].value =
@@ -21,7 +21,7 @@
   }
 </script>
 
-<div class="flex dark:bg-neutral-800 accent-neutral-500">
+<div class="flex dark:bg-neutral-800 bg-neutral-200 accent-neutral-500">
   <input
     class="flex-1 mx-3"
     type="range"

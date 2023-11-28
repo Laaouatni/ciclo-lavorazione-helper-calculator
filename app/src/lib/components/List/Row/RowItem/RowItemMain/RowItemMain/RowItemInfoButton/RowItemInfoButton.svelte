@@ -1,0 +1,1 @@
+<button on:click class="dark:bg-neutral-700 dark:hover:bg-neutral-800 bg-neutral-300 hover:bg-neutral-200 text-3xl p-4 transition active:scale-90 dark:text-neutral-400 text-neutral-600 rounded-md">i</button>

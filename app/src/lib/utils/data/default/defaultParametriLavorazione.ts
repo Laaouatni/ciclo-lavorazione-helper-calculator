@@ -1,5 +1,5 @@
-import type TypeParametriLavorazione from "../../../types/types";
-import type { TypeParametriLavorazioneIndexNames } from "../../../types/types";
+import type TypeParametriLavorazione from "../../types/types";
+import type { TypeParametriLavorazioneIndexNames } from "$types/types";
 
 function fixMathRoundError(number: number, precision: number = 3): number {
   return Number(
@@ -7,10 +7,12 @@ function fixMathRoundError(number: number, precision: number = 3): number {
   );
 }
 
+const DEFAULT_VALUE_IF_UNDEFINED = 0.0001;
+
 const defaultParametriLavorazione: TypeParametriLavorazione = {
-  d: {
+  dIniziale: {
     value: 30,
-    info: "diametro pezzo",
+    info: "diametro pezzo Iniziale",
     unit: "Ø",
     minmax: {
       min: 1,
@@ -31,9 +33,12 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       const thisParent = defaultParametriLavorazione;
       return {
         value: fixMathRoundError(
-          (thisParent.d.value * Math.PI * thisParent.n.value) / 1000,
+          (thisParent.dIniziale.value * Math.PI * thisParent.n.value) / 1000,
         ),
-        variablesToCheck: ["d", "n"] as TypeParametriLavorazioneIndexNames[],
+        variablesToCheck: [
+          "dIniziale",
+          "n",
+        ] as TypeParametriLavorazioneIndexNames[],
       };
     },
   },
@@ -49,7 +54,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       const thisParent = defaultParametriLavorazione;
       return {
         value: fixMathRoundError(
-          (thisParent.vt.value * 1000) / (Math.PI * thisParent.d.value),
+          (thisParent.vt.value * 1000) / (Math.PI * thisParent.dIniziale.value),
         ),
         variablesToCheck: ["vt", "d"] as TypeParametriLavorazioneIndexNames[],
       };
@@ -60,7 +65,10 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "profondità di taglio",
     unit: "mm",
     minmax: {
-      min: 0,
+      get min(): number {
+        const thisParent = defaultParametriLavorazione;
+        return thisParent.prof.step || DEFAULT_VALUE_IF_UNDEFINED;
+      },
       max: 5,
     },
     step: 0.1,
@@ -70,7 +78,10 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "avanzamento per ogni giro",
     unit: "mm/giro",
     minmax: {
-      min: 0,
+      get min(): number {
+        const thisParent = defaultParametriLavorazione;
+        return thisParent.avanz.step || DEFAULT_VALUE_IF_UNDEFINED;
+      },
       max: 2,
     },
     step: 0.1,
@@ -80,7 +91,10 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "corsa",
     unit: "mm",
     minmax: {
-      min: 0,
+      get min(): number {
+        const thisParent = defaultParametriLavorazione;
+        return thisParent.corsa.step || DEFAULT_VALUE_IF_UNDEFINED;
+      },
       max: 200,
     },
     step: 0.1,
@@ -90,8 +104,24 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "numero di passate",
     unit: "passate",
     minmax: {
-      min: 0,
+      min: 1,
       max: 50,
+    },
+    get formula() {
+      const thisParent = defaultParametriLavorazione;
+      return {
+        value: Math.ceil(
+          fixMathRoundError(
+            (thisParent.dIniziale.value - thisParent.dFinale.value) /
+              thisParent.prof.value,
+          ),
+        ),
+        variablesToCheck: [
+          "dIniziale",
+          "dFinale",
+          "prof",
+        ] as TypeParametriLavorazioneIndexNames[],
+      };
     },
   },
   tempo: {
@@ -99,7 +129,10 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
     info: "tempo",
     unit: "min",
     minmax: {
-      min: 0,
+      get min(): number {
+        const thisParent = defaultParametriLavorazione;
+        return thisParent.tempo.step || DEFAULT_VALUE_IF_UNDEFINED;
+      },
       max: 10,
     },
     step: 0.001,
@@ -109,16 +142,29 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       return {
         value: fixMathRoundError(
           (thisParent.corsa.value /
-            (thisParent.avanz.value * thisParent.n.value)) * thisParent.npassate.value,
+            (thisParent.avanz.value * thisParent.n.value)) *
+            thisParent.npassate.value,
         ),
         variablesToCheck: [
           "corsa",
           "avanz",
           "n",
-          "npassate"
+          "npassate",
         ] as TypeParametriLavorazioneIndexNames[],
       };
     },
+  },
+  dFinale: {
+    value: 30,
+    info: "diametro pezzo Finale",
+    unit: "Ø",
+    minmax: {
+      min: 1,
+      get max(): number {
+        return defaultParametriLavorazione.dIniziale.value;
+      },
+    },
+    step: 0.05,
   },
 };
 

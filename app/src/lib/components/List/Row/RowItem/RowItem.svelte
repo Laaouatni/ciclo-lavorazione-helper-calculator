@@ -1,19 +1,19 @@
 <script lang="ts">
-  import TempoConversione from "./Title/TempoConversione/TempoConversione.svelte";
-  import type { TypeParametriLavorazioneIndexNames } from "../utils/types/types";
-  import RowItemInput from "./Input/RowItemInput.svelte";
-  import RowItemTitle from "./Title/RowItemTitle.svelte";
+  import type { TypeParametriLavorazioneIndexNames } from "$types/types";
+  import RowItemInfoPart from "./RowItemInfoPart/RowItemInfoPart.svelte";
+
+  import RowItemMain from "./RowItemMain/RowItemMain/RowItemMain.svelte";
 
   export let keyId: TypeParametriLavorazioneIndexNames;
+
+  let isInfoOpen = false;
 </script>
 
 <div
-  class="border-2 dark:border-neutral-500 grid rounded-md overflow-hidden hover:scale-[0.98] active:shadow-xl active:dark:shadow-neutral-900 transition duration-500 active:border-l-8"
+  class="border-2 dark:border-neutral-600 border-neutral-400 dark:bg-neutral-700 bg-neutral-300 rounded-xl overflow-hidden"
 >
-  <RowItemTitle {keyId}>
-    {#if keyId == "tempo"}
-      <TempoConversione/>
-    {/if}
-  </RowItemTitle>
-  <RowItemInput {keyId}></RowItemInput>
+  <RowItemMain {keyId} bind:isInfoOpen></RowItemMain>
+  {#if isInfoOpen}
+    <RowItemInfoPart {keyId} {isInfoOpen}></RowItemInfoPart>
+  {/if}
 </div>

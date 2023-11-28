@@ -1,15 +1,17 @@
 export type TypeParametriLavorazioneIndexNames =
-  | "d"
+  | "dIniziale"
   | "vt"
   | "n"
   | "prof"
   | "avanz"
   | "corsa"
   | "npassate"
-  | "tempo";
+  | "tempo"
+  | "dFinale"
 
 export type TypeParametriLavorazioneValue = {
   value: number;
+  hidden?: boolean;
   info: string;
   unit: string;
   minmax: {
@@ -21,7 +23,7 @@ export type TypeParametriLavorazioneValue = {
   formula?: {
     value: number,
     variablesToCheck: TypeParametriLavorazioneIndexNames[]
-  }
+  },
 };
 
 type TypeParametriLavorazione = {
