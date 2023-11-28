@@ -14,6 +14,6 @@
 >
   <RowItemMain {keyId} bind:isInfoOpen></RowItemMain>
   {#if isInfoOpen}
-    <RowItemInfoPart {keyId} {isInfoOpen}></RowItemInfoPart>
+    <RowItemInfoPart {keyId}></RowItemInfoPart>
   {/if}
 </div>

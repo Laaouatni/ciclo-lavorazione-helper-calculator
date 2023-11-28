@@ -56,7 +56,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
         value: fixMathRoundError(
           (thisParent.vt.value * 1000) / (Math.PI * thisParent.dIniziale.value),
         ),
-        variablesToCheck: ["vt", "d"] as TypeParametriLavorazioneIndexNames[],
+        variablesToCheck: ["vt", "dIniziale"] as TypeParametriLavorazioneIndexNames[],
       };
     },
   },
@@ -165,6 +165,7 @@ const defaultParametriLavorazione: TypeParametriLavorazione = {
       },
     },
     step: 0.05,
+    hidden: true
   },
 };
 
